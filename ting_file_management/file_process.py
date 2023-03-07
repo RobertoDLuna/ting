@@ -35,4 +35,13 @@ def remove(instance):
 
 
 def file_metadata(instance, position):
-    """Aqui irá sua implementação"""
+    try:
+        # Procurando obj pelo índice
+        info_data = instance.search(position)
+        # Saída das infos do elem
+        sys.stdout.write(str(info_data))
+        return str(info_data)
+    # Caso indice não exista
+    except IndexError:
+        # Saída
+        sys.stderr.write('Posição inválida')
