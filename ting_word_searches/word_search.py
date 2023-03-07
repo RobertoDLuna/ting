@@ -1,28 +1,27 @@
 def exists_word(word, instance):
-    # array com as ocorrencias
+    # array de ocorrencias
     occurrences = []
-    # para cada elemento da lista
-    for e in instance.list:
-        occurrences_lines = []  # linhas da ocorrencia
-        # adicionando informaçoes da ocorrencia
-        occurrences.append({
-            'palavra': word,
-            'arquivo': e['nome_do_arquivo'],
-            'ocorrencias': occurrences_lines
-        })
-        # Para cada indice e linha na lista criada pelo enumerate
-        for i, line in enumerate(e['linhas_do_arquivo']):
-            # enumerate criará uma lista a partir do
-            # indico 0 ou determinado no segundo parametro da func
-            if word in line:  # caso a palavra exista na linha
+    # para cada indice da lista
+    for i in range(len(instance)):
+        item = instance.search(i)
+        found_occurrences = []  # array para adição de ocorrencias encontradas
+
+        # para cada elemento e linha criada pelo enumerate
+        for e, line in enumerate(item["linhas_do_arquivo"], start=1):
+            # usando caixa baixa para case insensitive
+            # Se existir a palavra na linha
+            if word.lower() in line.lower():
                 # adiciona no array
-                occurrences_lines.append({
-                    'linha': i + 1
-                })
-        # caso não ajam ocorrencias
-        if len(occurrences_lines) == 0:
-            # removerá e retornará o primeiro elemento da fila
-            occurrences.pop()
+                found_occurrences.append({"linha": e})
+        # se as ocorrencias encontradas forem =! de 0
+        # adiciona nas ocorrencias
+        if found_occurrences:
+            occurrences.append({
+                "palavra": word,
+                "arquivo": item["nome_do_arquivo"],
+                "ocorrencias": found_occurrences
+            })
+
     return occurrences
 
 
