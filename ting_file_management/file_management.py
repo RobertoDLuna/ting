@@ -5,7 +5,7 @@ def txt_importer(path_file):
     # Caso o arquivo não tenha extensão txt
     if not path_file.endswith('txt'):
         # retorna erro de formato
-        return sys.stderr.write('Fomato inválido\n')
+        return sys.stderr.write('Formato inválido\n')
     try:
         # Abrindo o arquivo no modo leitura
         with open(path_file, mode="r") as file:
