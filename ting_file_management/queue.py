@@ -17,7 +17,7 @@ class Queue(AbstractQueue):
     # Remover dados
     def dequeue(self):
         return self.list.pop(0)
-        
+
     # Buscar dados
     def search(self, index):
         # se o index for < 0 ou maior que o len da lista
